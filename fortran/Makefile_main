@@ -52,7 +52,7 @@ CAMBOBJ       = $(patsubst %,%.o,$(SOURCEFILES))
 FORUTILS_DIR ?= $(FORUTILSPATH)/$(OUTPUT_DIR)/
 python: FORUTILS_DIR=$(FORUTILSPATH)/$(DLL_DIR)/
 
-LIBLINK = -L"$(FORUTILS_DIR)" -lforutils
+LIBLINK = -L"$(FORUTILS_DIR)" -lforutils -L/usr/lib64
 
 
 ## CosmoRec
