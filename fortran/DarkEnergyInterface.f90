@@ -26,7 +26,7 @@
 
     type, extends(TDarkEnergyModel) :: TDarkEnergyEqnOfState
         !Type supporting w, wa or general w(z) table
-        real(dl) :: z_dag = 1.7_dl ! the redshift of sign switch !!MG
+        real(dl) :: z_dag = -2.0_dl ! the redshift of sign switch !!MG
         real(dl) :: w_lam = -1_dl !p/rho for the dark energy (an effective value, used e.g. for halofit)
         real(dl) :: wa = 0._dl !may not be used, just for compatibility with e.g. halofit
         real(dl) :: cs2_lam = 1_dl !rest-frame sound speed, though may not be used
@@ -270,7 +270,7 @@
 
     this%use_tabulated_w = Ini%Read_Logical('use_tabulated_w', .false.)
     if(.not. this%use_tabulated_w)then
-        this%z_dag = Ini%Read_Double('z_dag', 1.7_dl) !! MG
+        this%z_dag = Ini%Read_Double('z_dag', -2.0_dl) !! MG
         this%w_lam = Ini%Read_Double('w', -1.d0)
         this%wa = Ini%Read_Double('wa', 0.d0)
         ! trap dark energy becoming important at high redshift
