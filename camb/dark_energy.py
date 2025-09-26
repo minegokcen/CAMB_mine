@@ -29,6 +29,7 @@ class DarkEnergyEqnOfState(DarkEnergyModel):
     _fortran_class_name_ = "TDarkEnergyEqnOfState"
 
     _fields_ = [
+        ("z_dag", c_double, "redshift of sign-switch"), ##MG
         ("w", c_double, "w(0)"),
         ("wa", c_double, "-dw/da(0)"),
         ("cs2", c_double, "fluid rest-frame sound speed squared"),
@@ -38,15 +39,17 @@ class DarkEnergyEqnOfState(DarkEnergyModel):
 
     _methods_ = [("SetWTable", [numpy_1d, numpy_1d, POINTER(c_int)])]
 
-    def set_params(self, w=-1.0, wa=0, cs2=1.0):
+    def set_params(self, w=-1.0, wa=0, cs2=1.0, z_dag=1.7): ##MG
         """
          Set the parameters so that P(a)/rho(a) = w(a) = w + (1-a)*wa
-
+	
+	:param z_dag: redshift where the sign-switch occurs
         :param w: w(0)
         :param wa: -dw/da(0)
         :param cs2: fluid rest-frame sound speed squared
         """
-        self.w = w
+        self.z_dag = z_dag ##MG
+	self.w = w
         self.wa = wa
         self.cs2 = cs2
         self.validate_params()
