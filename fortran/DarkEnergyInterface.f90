@@ -25,7 +25,7 @@
 
     type, extends(TDarkEnergyModel) :: TDarkEnergyEqnOfState
         !Type supporting w, wa or general w(z) table
-	real(dl) :: z_dag = 1.7_dl ! the redshift of sign switch !!MG
+		real(dl) :: z_dag = 1.7_dl ! the redshift of sign switch !!MG
         real(dl) :: w_lam = -1_dl !p/rho for the dark energy (an effective value, used e.g. for halofit)
         real(dl) :: wa = 0._dl !may not be used, just for compatibility with e.g. halofit
         real(dl) :: cs2_lam = 1_dl !rest-frame sound speed, though may not be used
