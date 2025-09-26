@@ -25,7 +25,7 @@
 
     type, extends(TDarkEnergyModel) :: TDarkEnergyEqnOfState
         !Type supporting w, wa or general w(z) table
-		real(dl) :: z_dag = 1.7_dl ! the redshift of sign switch !!MG
+        real(dl) :: z_dag = 1.7_dl ! the redshift of sign switch !!MG
         real(dl) :: w_lam = -1_dl !p/rho for the dark energy (an effective value, used e.g. for halofit)
         real(dl) :: wa = 0._dl !may not be used, just for compatibility with e.g. halofit
         real(dl) :: cs2_lam = 1_dl !rest-frame sound speed, though may not be used
@@ -222,14 +222,14 @@
 
     if(.not. this%use_tabulated_w) then
       ! grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa) !! MG commented this line out
-	!! MG mods begin
-		if(a>=1._dl/(1._dl+this%z_dag)) then 
-			grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa)
-		else
-			grho_de = -(a ** (1._dl - 3. * this%w_lam - 3. * this%wa))
-		endif
-	!! MG mods end
-		if (this%wa/=0) grho_de=grho_de*exp(-3. * this%wa * (1._dl - a)) 	
+    !! MG mods begin
+        if(a>=1._dl/(1._dl+this%z_dag)) then 
+            grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa)
+        else
+            grho_de = -(a ** (1._dl - 3. * this%w_lam - 3. * this%wa))
+        endif
+    !! MG mods end
+        if (this%wa/=0) grho_de=grho_de*exp(-3. * this%wa * (1._dl - a)) 	
     else
         if(a == 0.d0)then
             grho_de = 0.d0      !assume rho_de*a^4-->0, when a-->0, OK if w_de always <0.

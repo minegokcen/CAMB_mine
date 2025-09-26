@@ -911,7 +911,7 @@ def compile_source_function_code(code_body, file_path="", compiler=None, fflags=
         polter, polterdot, polterddot, octg, octgdot, E, Edot, &
         opacity, dopacity, ddopacity, visibility, dvisibility, ddvisibility, exptau, &
         tau0, tau_maxvis, Kf, f_K, &
-		z_dag) ##MG
+        z_dag) ##MG
     implicit none
     real*8, intent(out) :: sources(:)
     REAL*8, intent(in) ::  tau, a, adotoa, grho, gpres,w_lam, cs2_lam,  &
@@ -923,7 +923,7 @@ def compile_source_function_code(code_body, file_path="", compiler=None, fflags=
             polter, polterdot, polterddot, octg, octgdot, E(2:3), Edot(2:3), &
             opacity, dopacity, ddopacity, visibility, dvisibility, ddvisibility, exptau, &
             tau0, tau_maxvis, Kf(*), &
-	    	z_dag ##MG
+            z_dag ##MG
     real*8, external :: f_K
 
     %s
