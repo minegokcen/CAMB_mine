@@ -49,7 +49,7 @@ class DarkEnergyEqnOfState(DarkEnergyModel):
         :param cs2: fluid rest-frame sound speed squared
         """
         self.z_dag = z_dag ##MG
-	self.w = w
+		self.w = w
         self.wa = wa
         self.cs2 = cs2
         self.validate_params()
