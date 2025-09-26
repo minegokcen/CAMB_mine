@@ -43,13 +43,13 @@ class DarkEnergyEqnOfState(DarkEnergyModel):
         """
          Set the parameters so that P(a)/rho(a) = w(a) = w + (1-a)*wa
 	
-		:param z_dag: redshift where the sign-switch occurs
+	:param z_dag: redshift where the sign-switch occurs
         :param w: w(0)
         :param wa: -dw/da(0)
         :param cs2: fluid rest-frame sound speed squared
         """
         self.z_dag = z_dag ##MG
-		self.w = w
+	self.w = w
         self.wa = wa
         self.cs2 = cs2
         self.validate_params()
