@@ -7,7 +7,8 @@
     private
 
     type, extends(TCambComponent) :: TDarkEnergyModel
-        logical :: is_cosmological_constant = .true.
+        ! logical :: is_cosmological_constant = .true. !! MG commented this line out.
+        logical :: is_cosmological_constant = .false.
         integer :: num_perturb_equations = 0
     contains
     procedure :: Init
@@ -269,6 +270,7 @@
 
     this%use_tabulated_w = Ini%Read_Logical('use_tabulated_w', .false.)
     if(.not. this%use_tabulated_w)then
+        this%z_dag = Ini%Read_Double('z_dag', 1.7_dl) !! MG
         this%w_lam = Ini%Read_Double('w', -1.d0)
         this%wa = Ini%Read_Double('wa', 0.d0)
         ! trap dark energy becoming important at high redshift
@@ -288,8 +290,8 @@
     class(TDarkEnergyEqnOfState), intent(inout) :: this
     class(TCAMBdata), intent(in), target :: State
 
-    this%is_cosmological_constant = .not. this%use_tabulated_w .and. &
-        &  abs(this%w_lam + 1._dl) < 1.e-6_dl .and. this%wa==0._dl
+    ! this%is_cosmological_constant = .not. this%use_tabulated_w .and. & !! MG commented it out
+    !    &  abs(this%w_lam + 1._dl) < 1.e-6_dl .and. this%wa==0._dl !! MG commented it out
 
     end subroutine TDarkEnergyEqnOfState_Init
 
