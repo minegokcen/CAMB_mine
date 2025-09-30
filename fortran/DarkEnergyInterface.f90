@@ -222,14 +222,16 @@
 
     if(.not. this%use_tabulated_w) then
       ! grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa) !! MG commented this line out
-    !! MG mods begin
+      ! if (this%wa/=0) grho_de=grho_de*exp(-3. * this%wa * (1._dl - a))  !! MG commented this line out
+      
+    !! MG mods for sign-switch begin
         if(a>=1._dl/(1._dl+this%z_dag)) then 
             grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa)
         else
             grho_de = -(a ** (1._dl - 3. * this%w_lam - 3. * this%wa))
         endif
-    !! MG mods end
-        if (this%wa/=0) grho_de=grho_de*exp(-3. * this%wa * (1._dl - a)) 	
+    !! MG mods for sign-switch end  
+    
     else
         if(a == 0.d0)then
             grho_de = 0.d0      !assume rho_de*a^4-->0, when a-->0, OK if w_de always <0.
