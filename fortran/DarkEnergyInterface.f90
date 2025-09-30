@@ -194,7 +194,7 @@
         TDarkEnergyEqnOfState_w_de= this%w_lam+ this%wa*(1._dl-a)
         
     !! MG mods for PDL + neg CC begin
-        real(dl) :: a_c !define critial scale factor as a real valued variable
+       ! real(dl) :: a_c !define critial scale factor as a real valued variable
         a_c = 1._dl + (1._dl + this%w_lam)/(this%wa)
         if(a>=a_c) TDarkEnergyEqnOfState_w_de= -1._dl !CC
     !! MG mods for PDL + neg CC end
