@@ -269,7 +269,7 @@
 
     this%use_tabulated_w = Ini%Read_Logical('use_tabulated_w', .false.)
     if(.not. this%use_tabulated_w)then
-        this%z_dag = Ini%Read_Double('z_dag', -2.0_dl) !! MG
+        ! this%z_dag = Ini%Read_Double('z_dag', -2.0_dl) !! MG
         this%w_lam = Ini%Read_Double('w', -1.d0)
         this%wa = Ini%Read_Double('wa', 0.d0)
         ! trap dark energy becoming important at high redshift
