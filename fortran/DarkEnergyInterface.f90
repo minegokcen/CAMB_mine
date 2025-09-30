@@ -7,8 +7,7 @@
     private
 
     type, extends(TCambComponent) :: TDarkEnergyModel
-        ! logical :: is_cosmological_constant = .true. !! MG commented this line out.
-        logical :: is_cosmological_constant = .false.
+        logical :: is_cosmological_constant = .true.
         integer :: num_perturb_equations = 0
     contains
     procedure :: Init
@@ -290,8 +289,9 @@
     class(TDarkEnergyEqnOfState), intent(inout) :: this
     class(TCAMBdata), intent(in), target :: State
 
-    ! this%is_cosmological_constant = .not. this%use_tabulated_w .and. & !! MG commented it out
-    !    &  abs(this%w_lam + 1._dl) < 1.e-6_dl .and. this%wa==0._dl !! MG commented it out
+    this%is_cosmological_constant = .not. this%use_tabulated_w .and. & 
+        &  abs(this%w_lam + 1._dl) < 1.e-6_dl .and. this%wa==0._dl 
+        &  this%z_dag < -1.e-6_dl !! MG
 
     end subroutine TDarkEnergyEqnOfState_Init
 
