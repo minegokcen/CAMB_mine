@@ -225,12 +225,23 @@
       ! if (this%wa/=0) grho_de=grho_de*exp(-3. * this%wa * (1._dl - a))  !! MG commented this line out
       
     !! MG mods for sign-switch begin
-        if(a>=1._dl/(1._dl+this%z_dag)) then 
-            grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa)
-        else
-            grho_de = -(a ** (1._dl - 3. * this%w_lam - 3. * this%wa))
-        endif
+      !  if(a>=1._dl/(1._dl+this%z_dag)) then 
+      !      grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa)
+      !  else
+      !      grho_de = -(a ** (1._dl - 3. * this%w_lam - 3. * this%wa))
+      !  endif
     !! MG mods for sign-switch end  
+
+    !! MG mods for PDL + neg CC begin
+        real(dl) :: a_c !define critial scale factor as a real valued variable
+        a_c = 1._dl + (1._dl + this%w_lam)/(this%wa)
+        if(a>=a_c) then
+            grho_de = -(a ** (4._dl)) !neg CC
+        else
+            grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa)
+            if (this%wa/=0) grho_de=grho_de*exp(-3. * this%wa * (1._dl - a))
+        endif
+    !! MG mods for PDL + neg CC end
     
     else
         if(a == 0.d0)then
@@ -292,8 +303,8 @@
     class(TCAMBdata), intent(in), target :: State
 
     this%is_cosmological_constant = .not. this%use_tabulated_w .and. & 
-        &  abs(this%w_lam + 1._dl) < 1.e-6_dl .and. this%wa==0._dl 
-        &  this%z_dag < -1.e-6_dl !! MG
+        &  abs(this%w_lam + 1._dl) < 1.e-6_dl .and. this%wa==0._dl .and. &
+        &  this%z_dag < (-1._dl -1.e-6_dl) !! MG
 
     end subroutine TDarkEnergyEqnOfState_Init
 
