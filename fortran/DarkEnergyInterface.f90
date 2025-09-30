@@ -196,7 +196,8 @@
         
     !! MG mods for PDL + neg CC begin
         a_c = 1._dl + (1._dl + this%w_lam)/(this%wa)
-        if(a>=a_c) TDarkEnergyEqnOfState_w_de= -1._dl !CC
+       ! if(a>=a_c) TDarkEnergyEqnOfState_w_de= -1._dl !CC today
+        if(a<=a_c) TDarkEnergyEqnOfState_w_de= -1._dl !CC in the past
     !! MG mods for PDL + neg CC end
     
     else
@@ -242,9 +243,10 @@
 
     !! MG mods for PDL + neg CC begin
         a_c = 1._dl + (1._dl + this%w_lam)/(this%wa)
-        if(a>=a_c) then
-           ! grho_de = -(a ** (4._dl)) !neg CC
-           grho_de = (a ** (4._dl)) !CC
+       ! if(a>=a_c) then ! neg CC today
+        if(a<=a_c) then ! neg CC in the past
+           grho_de = -(a ** (4._dl)) !neg CC
+          ! grho_de = (a ** (4._dl)) !CC
         else
             grho_de = a ** (1._dl - 3. * this%w_lam - 3. * this%wa)
             if (this%wa/=0) grho_de=grho_de*exp(-3. * this%wa * (1._dl - a))
